@@ -20,6 +20,7 @@
 #include "nul/motherboard.h"
 #include "nul/vcpu.h"
 #include "instcache.h"
+#include "service/memory.h"
 
 
 /**
@@ -38,7 +39,10 @@ public:
   Halifax(VCpu *vcpu) : InstructionCache(vcpu) {
     vcpu->executor.add(this,  receive_static);
   }
-  void *operator new(size_t size)  { return new /*(__alignof__(Halifax))*/ char[size]; }
+  void *operator new(size_t size)
+  {
+    return new (Aligned(__alignof__(Halifax))) char[size];
+  }
 };
 
 PARAM_HANDLER(halifax,
