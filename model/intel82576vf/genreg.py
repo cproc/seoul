@@ -145,7 +145,6 @@ def class_gen(name, rset, out):
     # Resolve set references and provide some convenience
     out("/// -*- Mode: C++ -*-")
     out("/// This file has been automatically generated.")
-    out("/// Generated on %s by %s" % (strftime("%a, %d %b %Y %H:%M:%S", gmtime()), getuser()))
     for r in rset:
         assert r['offset'] % 4 == 0
         if 'important' not in r:
